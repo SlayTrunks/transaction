@@ -175,7 +175,7 @@ const transferController = async (req, res) => {
         message: "Insufficient balance",
       });
     }
-    const toAccount = await User.findOne({ email: to }).session();
+    const toAccount = await User.findOne({ email: to }).session(session);
     if (!toAccount) {
       await session.abortTransaction();
       return res.status(400).json({ message: "receiver email donot exist" });
